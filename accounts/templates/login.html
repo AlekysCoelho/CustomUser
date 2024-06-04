@@ -1,0 +1,8 @@
+{% include "base.html" %}
+{% load static %}
+
+{% block 'body' %}
+    <div>
+        <h1 class="text-clifford text-2xl">Welcome {{request.user.first_name}}</h1>
+    </div>
+{% endblock 'body' %}

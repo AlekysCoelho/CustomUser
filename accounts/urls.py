@@ -1,8 +1,14 @@
 from django.urls import path
 
-from . import views
+from . import htmx_views, views
 
 urlpatterns = [
-    path("regiter/", views.register, name="register"),
+    path("register/", views.register, name="register"),
     path("login/", views.login, name="login"),
 ]
+
+htmx_urlpatterns = [
+    path("check_email/", htmx_views.check_email, name="check_email"),
+]
+
+urlpatterns += htmx_urlpatterns

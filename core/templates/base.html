@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {% comment %} HTMX {% endcomment %}
+    <script
+      src="https://unpkg.com/htmx.org@1.9.12"
+      integrity="sha384-ujb1lZYygJmzgSwoxRggbCHcjc0rB2XoQrxeTUQyRjrOnlCoYta87iKBWq3EsdM2"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://unpkg.com/htmx.org@1.9.12/dist/htmx.js" integrity="sha384-qbtR4rS9RrUMECUWDWM2+YGgN3U4V4ZncZ0BvUcg9FGct0jqXz3PUdVpU1p0yrXS" crossorigin="anonymous"></script>
+
+    {% comment %} GOOGLE FONTES {% endcomment %}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Poetsen+One&display=swap" rel="stylesheet" /> 
+
+    {% comment %} <script src="{% static 'messages_time.js' %}"></script> {% endcomment %}
+
+    {% comment %} TAILWIND CSS {% endcomment %}
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+          theme: {
+            fontFamily: {
+              'Lato' : 'Lato',
+              'Poetsen': 'Poetsen One'
+            },
+            extend: {
+              colors: {
+                clifford: '#da373d',
+                backgroundBody: 'rgb(15,23,42)',
+              },
+            }
+          },
+        }
+      </script>
+
+    <title>{% block 'title' %}{% endblock 'title' %}</title>
+    {% block 'head' %}{% endblock 'head' %}
+</head>
+<body class="bg-backgroundBody ">
+    {% block 'body' %}{% endblock 'body' %}
+  </div>
+</body>
+</html>

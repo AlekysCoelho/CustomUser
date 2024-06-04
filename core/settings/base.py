@@ -2,6 +2,7 @@ import os
 from pathlib import Path
 
 from decouple import config
+from django.contrib.messages import constants
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -116,6 +117,16 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Messages
+
+MESSAGE_TAGS = {
+    constants.DEBUG: "bg-amber-300",
+    constants.ERROR: "bg-red-600",
+    constants.SUCCESS: "bg-green-500",
+    constants.INFO: "bg-cyan-300",
+    constants.WARNING: "bg-orange-400",
+}
 
 # Custom User
 AUTH_USER_MODEL = "accounts.User"

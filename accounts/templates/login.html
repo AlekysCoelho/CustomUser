@@ -1,8 +1,72 @@
-{% include "base.html" %}
+{% extends "base.html" %}
 {% load static %}
+{% block 'head' %}{% endblock 'head' %}
 
 {% block 'body' %}
-    <div>
-        <h1 class="text-clifford text-2xl">Welcome {{request.user.first_name}}</h1>
+    <div class="flex justify-center items-center text-white w-full h-screen">
+        <div class="w-1/2 max-w-xl h-3/4 flex flex-col justify-center items-center gap-y-24 border border-cyan-500 rounded-xl shadow-lg shadow-cyan-600">
+            <h1 class="font-Poetsen mt-8 text-center text-2xl drop-shadow-2xl">Login</h1>
+
+            <div class="h-full w-3/4 flex flex-col content-center justify-center">
+                <form 
+                    action="{% url 'login' %}" 
+                    method="post" 
+                    class="h-full flex flex-col justify-items-start items-center font-Lato gap-y-12"
+                >
+                    {% csrf_token %}
+
+                        <div class="w-full h-10 flex">
+                            {% if messages %}
+                                {% for message in messages  %}
+                                    <section class="w-full h-full text-gray-200 text-center {{message.tags}} border rounded-xl text-sm leading-9">{{message}}</section>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                    
+
+                        <div class="w-full flex flex-col justify-items-start items-center gap-y-3.5">
+                            <label for="email" class="w-full font-semibold">Email</label>
+                            <input 
+                                type="email" 
+                                name="email" 
+                                id="email"
+                                class="w-full h-10 text-sm pl-2 text-gray-300 tracking-widest bg-transparent border rounded-md border-cyan-600 hover:border-cyan-400 focus:border-cyan-500 focus:ring-cyan-500 focus:ring-1 focus:outline-none resize-none"
+                                placeholder="Type your email..." 
+                            />
+
+
+                            <label for="" class="w-full font-semibold">Password</label>
+                            <input 
+                                type="password" 
+                                name="password" 
+                                id="" 
+                                class="w-full h-10 pl-2 text-gray-300 tracking-widest bg-transparent border rounded-md border-cyan-600 hover:border-cyan-400 focus:border-cyan-500 focus:ring-cyan-500 focus:ring-1 focus:outline-none resize-none"
+                                placeholder="Type your password..." 
+                            />
+                            </div>
+
+                        <div 
+                            class="w-full h-36 my-12 flex flex-col justify-center items-center content-center gap-y-8"
+                        >
+                            <input 
+                                type="submit" 
+                                value="Login"
+                                class="w-full h-12 cursor-pointer bg-cyan-500 shadow-lg shadow-cyan-500/50 text-base hover:text-lg hover:text-backgroundBody hover:bg-cyan-400 transition ease-in-out delay-150 duration-200 rounded-md"
+                            />
+                            <div class="flex gap-1">
+                                <strong>Don't have an account?</strong>
+                                <a 
+                                    href="{% url 'register' %}"
+                                    class="text-cyan-300 hover:text-cyan-500 transition ease-in delay-100"
+                                >
+                                    Register
+                                </a>
+                            </div>
+                            
+                        </div>
+                    
+                </form>
+            </div>
+        </div>
     </div>
 {% endblock 'body' %}

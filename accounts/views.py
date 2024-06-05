@@ -1,3 +1,5 @@
+from django.contrib import auth, messages
+from django.contrib.messages import constants
 from django.shortcuts import redirect, render
 
 from .models import User
@@ -33,4 +35,23 @@ def register(request):
 
 
 def login(request):
-    return render(request, "login.html")
+    if request.method == "GET":
+        return render(request, "login.html")
+    else:
+        email = request.POST.get("email")
+        senha = request.POST.get("password")
+
+        user = User.objects.filter(email=email)
+
+        if user.exists():
+            user = auth.authenticate(request, email=email, password=senha)
+            if user:
+                print("Usuário autenticado!")
+                auth.login(request, user)
+                return redirect("/appone/home")
+        else:
+            messages.add_message(
+                request, constants.ERROR, "E-mail ou senha inválido(a)"
+            )
+
+        return render(request, "login.html")

@@ -15,11 +15,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         default=False,
         help_text=_("Designates wheter this user can log into this admin site."),
     )
-    # is_staff = models.BooleanField(
-    #     _("staff status"),
-    #     default=False,
-    #     help_text=_("Designates whether the user can log into this admin site."),
-    # )
+
     is_active = models.BooleanField(
         _("active"),
         default=True,
@@ -28,8 +24,6 @@ class User(AbstractBaseUser, PermissionsMixin):
             "Unselect this instead of deleting accounts."
         ),
     )
-    # is_verified = models.BooleanField(default=False)
-    # is_superuser = models.BooleanField(default=False)
     date_joined = models.DateTimeField(auto_now_add=True)
     last_login = models.DateTimeField(_("last login"), blank=True, null=True)
 

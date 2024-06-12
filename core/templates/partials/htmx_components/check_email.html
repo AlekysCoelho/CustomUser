@@ -1,7 +1,7 @@
 {% if user %}
     {% if messages %}
         {% for message in messages %}
-            {% if 'red' in message.tags  %}
+            {% if 'Email already registered' in message.message  %}
                 <section class="w-full h-full text-sm leading-9 text-gray-200 text-center {{message.tags}} border rounded-xl">{{message}}</section>
             {% else %}
                 <div></div>

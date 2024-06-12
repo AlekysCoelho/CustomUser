@@ -1,9 +1,11 @@
 from django.contrib import auth, messages
+from django.contrib.auth import get_user_model
 from django.contrib.messages import constants
 from django.shortcuts import redirect, render
 
-from .models import User
-from .validators import equals_passwords, range_password
+from .validators import ValidatorPassword
+
+User = get_user_model()
 
 
 def register(request):
@@ -16,10 +18,9 @@ def register(request):
         password = request.POST.get("password")
         confirm_password = request.POST.get("confirm_password")
 
-        if not equals_passwords(request, password, confirm_password):
-            return redirect("/accounts/register")
+        validate_password = ValidatorPassword(request, password, confirm_password)
 
-        if range_password(request, password):
+        if validate_password.verified():
             try:
                 User.objects.create_user(
                     first_name=first_name,
@@ -46,7 +47,6 @@ def login(request):
         if user.exists():
             user = auth.authenticate(request, email=email, password=senha)
             if user:
-                print("Usuário autenticado!")
                 auth.login(request, user)
                 return redirect("/appone/home")
         else:

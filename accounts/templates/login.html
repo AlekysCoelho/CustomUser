@@ -43,7 +43,14 @@
                                 class="w-full h-10 pl-2 text-gray-300 tracking-widest bg-transparent border rounded-md border-cyan-600 hover:border-cyan-400 focus:border-cyan-500 focus:ring-cyan-500 focus:ring-1 focus:outline-none resize-none"
                                 placeholder="Type your password..." 
                             />
-                            </div>
+                        </div>
+
+                        <a
+                            href="{% url 'password_reset' %}"
+                            class="w-full flex justify-end hover:text-cyan-500 transition ease-in delay-100"
+                        >
+                            Forgot password ?
+                        </a>
 
                         <div 
                             class="w-full h-36 my-12 flex flex-col justify-center items-center content-center gap-y-8"
